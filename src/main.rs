@@ -2,8 +2,9 @@ use clap::{Parser, Subcommand};
 mod workers;
 
 #[derive(Parser)]
-#[command(author = "Itta Funahashi", version, about, long_about = None)]
+#[command(author = "Itta Funahashi", version, about = "Simple LCD monitoring system for Raspberry Pi cluster", long_about = None)]
 #[command(propagate_version = true)]
+#[command(arg_required_else_help = true)]
 struct Cli {
     #[command(subcommand)]
     command: Option<Commands>,
@@ -11,6 +12,7 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
+    #[command(author = "Itta Funahashi", version, about = "Start reporting stats to the host device", long_about = None)]
     Reporter(workers::reporter_cmd::ReporterArg),
 }
 

@@ -3,8 +3,14 @@ use tokio::time::{interval, Duration};
 
 #[derive(Parser)]
 pub struct ReporterArg {
+    #[clap(help = "IP Address of the host device")]
     host: String,
-    #[clap(long = "port", default_value = "2784")]
+    #[clap(
+        short = 'p',
+        long = "port",
+        help = "Port of the app running on the host device",
+        default_value = "2784"
+    )]
     port: String,
 }
 
