@@ -1,4 +1,5 @@
 use clap::{Parser, Subcommand};
+pub mod utils;
 mod workers;
 
 #[derive(Parser)]
@@ -28,6 +29,7 @@ struct Run {
 enum RunnableCommands {
     #[command(author = "Itta Funahashi", version, about = "Start reporting stats to the host device", long_about = None)]
     Reporter(workers::reporter_cmd::ReporterArg),
+    Host(workers::host_cmd::HostArg),
 }
 
 #[tokio::main]
@@ -37,6 +39,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     match &cli.command {
         Some(Commands::Run(run)) => match &run.command {
             Some(RunnableCommands::Reporter(arg)) => workers::reporter_cmd::run(&arg).await?,
+            Some(RunnableCommands::Host(arg)) => workers::host_cmd::run(&arg).await,
             None => todo!(),
         },
         None => todo!(),
