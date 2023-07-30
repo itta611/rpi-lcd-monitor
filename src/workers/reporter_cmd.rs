@@ -1,4 +1,5 @@
 use crate::types::IndexResponse;
+use crate::utils::stats;
 use clap::Parser;
 use tokio::time::{interval, Duration};
 
@@ -32,8 +33,8 @@ pub async fn run(arg: &ReporterArg) -> Result<(), Box<dyn std::error::Error>> {
 
     loop {
         interval.tick().await;
-        let resp = reqwest::get(&host_address.clone()).await?.text().await?;
 
-        println!("{:#?}", resp)
+        stats::get().await;
+        // println!("{:#?}", stats::get())
     }
 }

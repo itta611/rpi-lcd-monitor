@@ -7,8 +7,10 @@ edition = "2021"
 
 [dependencies]
 actix-web = "4.3.1"
+async-process = "1.7.0"
 clap = { version = "4.3.19", features = ["cargo", "derive"] }
 pnet = "0.34.0"
 reqwest = { version = "0.11", features = ["json"] }
 serde = {version="1.0.178", features = ["derive"]}
+sysinfo = "0.29.7"
 tokio = { version = "1", features = ["full"] }
