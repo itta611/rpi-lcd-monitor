@@ -38,8 +38,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     match &cli.command {
         Some(Commands::Run(run)) => match &run.command {
-            Some(RunnableCommands::Reporter(arg)) => workers::reporter_cmd::run(&arg).await?,
-            Some(RunnableCommands::Host(arg)) => workers::host_cmd::run(&arg).await,
+            Some(RunnableCommands::Reporter(arg)) => workers::reporter_cmd::run(arg).await?,
+            Some(RunnableCommands::Host(arg)) => workers::host_cmd::run(arg).await?,
             None => todo!(),
         },
         None => todo!(),

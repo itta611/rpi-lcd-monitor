@@ -21,8 +21,8 @@ pub fn get() -> Result<String, io::Error> {
             }
         }
     }
-    return Err(io::Error::new(
+    Err(io::Error::new(
         io::ErrorKind::Other,
         "Failed to get ip address",
-    ));
+    ))
 }
