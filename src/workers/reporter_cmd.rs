@@ -1,3 +1,4 @@
+use crate::types::IndexResponse;
 use clap::Parser;
 use tokio::time::{interval, Duration};
 
@@ -21,6 +22,13 @@ pub async fn run(arg: &ReporterArg) -> Result<(), Box<dyn std::error::Error>> {
     let host_address = format!("http://{host}:{port}", host = host, port = port);
 
     println!("Checking host {} is running...", host_address);
+
+    reqwest::get(&host_address.clone())
+        .await
+        .expect("Host server is not running")
+        .json::<IndexResponse>()
+        .await
+        .expect("Failed to parse json from host server\nIs host server running on the right port?");
 
     loop {
         interval.tick().await;

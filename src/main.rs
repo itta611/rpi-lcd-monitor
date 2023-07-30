@@ -1,4 +1,5 @@
 use clap::{Parser, Subcommand};
+pub mod types;
 pub mod utils;
 mod workers;
 

@@ -1,7 +1,7 @@
+use crate::types::IndexResponse;
 use crate::utils::get_ip_address;
 use actix_web::*;
 use clap::Parser;
-use serde::Serialize;
 
 #[derive(Parser)]
 pub struct HostArg {
@@ -14,16 +14,9 @@ pub struct HostArg {
     port: String,
 }
 
-#[derive(Serialize)]
-struct IndexResponse {
-    status: String,
-    message: String,
-}
-
 #[get("/")]
 async fn index() -> impl Responder {
     HttpResponse::Ok().json(IndexResponse {
-        status: "OK".to_string(),
         message: "`rpi-lcd-monitor` host server is running".to_string(),
     })
 }
