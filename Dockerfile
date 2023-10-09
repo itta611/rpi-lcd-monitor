@@ -3,10 +3,10 @@ WORKDIR /app
 COPY Cargo.toml ./
 RUN mkdir src && \
     echo "fn main() {}" > src/main.rs && \
-    apk add --no-cache musl-dev && \
+    apk add --no-cache build-base && \
     cargo build --release && \
     rm -rf src
-RUN apk add --no-cache musl-dev
+RUN apk add --no-cache build-base
 COPY . .
 RUN cargo build --release
 
