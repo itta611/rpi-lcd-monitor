@@ -26,9 +26,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: itta/itta.dev:latest
+          tags: itta/itta.dev:v${{ needs.get-tag.outputs.pkg-version }}
           platforms: ${{ matrix.platform }}
