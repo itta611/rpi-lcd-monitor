@@ -1,6 +1,6 @@
 FROM rust:alpine as builder
 WORKDIR /app
-COPY Cargo.toml ./
+COPY . .
 RUN apk add --no-cache build-base
 RUN apk add --no-cache pkgconfig
 RUN cargo build --release
