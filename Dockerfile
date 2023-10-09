@@ -1,8 +1,6 @@
-FROM rust:alpine as builder
+FROM rust:latest as builder
 WORKDIR /app
 COPY . .
-RUN apk add --no-cache build-base
-RUN apk add --no-cache pkgconfig
 RUN cargo build --release
 
 FROM alpine:latest
